@@ -1,11 +1,17 @@
 const Sequelize = require('sequelize');
+const {EC_DATABASE, EC_USERNAME, EC_HOST, EC_PASSWORD} = process.env;
+// const {DB_DATABASE, DB_USERNAME, DB_HOST, DB_PASSWORD} = require('../config');
 
-const {DB_DATABASE, DB_USERNAME, DB_HOST, DB_PASSWORD} = require('../config');
+// const sequelize = new Sequelize(DB_DATABASE, DB_USERNAME, DB_PASSWORD, {
+//     host: DB_HOST,
+//     dialect: 'postgres',
+//     logging: false
+// });
 
-const sequelize = new Sequelize(DB_DATABASE, DB_USERNAME, DB_PASSWORD, {
-    host: DB_HOST,
-    dialect: 'postgres',
-    logging: false
+const sequelize = new Sequelize(EC_DATABASE, EC_USERNAME, EC_PASSWORD, {
+  host: EC_HOST,
+  dialect: 'postgres',
+  logging: false
 });
 
 sequelize.authenticate()

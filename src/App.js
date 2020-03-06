@@ -19,7 +19,7 @@ class App extends React.Component {
     }
   }
   componentDidMount() {
-    Axios.post('/createNurses');
+    // Axios.post('/createNurses');
   }
 
   savePatientId = (id) => {
@@ -44,10 +44,10 @@ class App extends React.Component {
           <div className="hero-body">
             <div className="container">
               <h1 className="title">
-                Right Now // RN
+                right now || RN
               </h1>
               <h2 className="subtitle">
-                Your personal healthcare ally, only when you need us.
+                Personalized healthcare for hire. Whenever.
               </h2>
             </div>
           </div>
