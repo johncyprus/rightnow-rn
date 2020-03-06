@@ -1,13 +1,13 @@
 import React from 'react';
-import Axios from 'axios';
 
 import Nurse from './Nurse';
+import NurseView from './NurseView';
 
 class NurseList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-
+            selectedNurse: null
         }
     }
 
@@ -15,20 +15,37 @@ class NurseList extends React.Component {
         if (this.props.nurseList.length > 0) {
             return this.props.nurseList.map(nurse => {
                 return (
-                    <Nurse details={nurse}/>
+                    <Nurse details={nurse} handleListingClick={this.handleListingClick} />
                 )
-            })
+            });
         }
+    }
+
+    renderNurseView = () => {
+        if (this.state.selectedNurse) {
+            return (
+                <NurseView selectedNurse={this.state.selectedNurse}/>
+            )
+        }
+    }
+
+    handleListingClick = (details) => {
+        this.setState({selectedNurse: details})
     }
 
     render() {
         return (
-            <div className="nurse-list">
+            <>
                 <h1 className="info-section">Nurses near you</h1>
-                <div>
-                    {this.renderNurses()}
+                <div className="nurse-list">
+                    <div className="nurse-list-wrapper">
+                        {this.renderNurses()}
+                    </div>
+                    <div className="nurse-viewer-wrapper">
+                        {this.renderNurseView()}
+                    </div>
                 </div>
-            </div>
+            </>
         )
     }
 }

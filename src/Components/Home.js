@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 
-function Home(props) {
+function Home() {
     return (
         <div>
             <div className="intro-header">
@@ -16,7 +16,7 @@ function Home(props) {
             </div>
 
             <Link to='/signup'>
-                <button class="button is-primary is-outlined">Signup</button>
+                <button class="button is-primary">Signup</button>
             </Link>
         </div>
     )

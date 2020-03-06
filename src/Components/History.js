@@ -9,7 +9,8 @@ class History extends React.Component {
         super(props)
         this.state = {
             history: [],
-            value: ''
+            value: '',
+            submitted: false
         }
     }
 
@@ -56,7 +57,7 @@ class History extends React.Component {
         };
         Axios.put('/medicalHistory', body)
             .then(response => {
-                console.log('SUCCESS POSTED HISTORY:', response);
+                this.setState({submitted: true});
             })
             .catch(error => {
                 console.log('Error saving medical history:', error);
@@ -82,17 +83,17 @@ class History extends React.Component {
                     {this.renderDiseaseButton()}
                     <div className="submit-history">
                         <button 
-                            className="button is-warning is-outlined"
+                            className="button is-warning "
                             onClick={this.handleHistorySubmit}
                             >
-                            Submit History
+                            {this.state.submitted ? "Saved!" : "Submit History"}
                         </button>
                     </div>
                 </div>
 
                 <div className="proceed-to-specialties">
                     <Link to="/specialty">
-                        <button className="button is-primary is-outlined">Specialties</button>
+                        <button className="button is-primary ">Specialties</button>
                     </Link>
                 </div>
 

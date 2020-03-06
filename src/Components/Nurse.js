@@ -5,11 +5,12 @@ class Nurse extends React.Component {
         super(props)
     }
 
+
     render() {
-        const {id, name, description, hospital, avatar, specialty} = this.props.details;
+        const {name, description, hospital, avatar, specialty} = this.props.details;
         return (
-            <div class="card nurse-card">
-                <div class="card-content">
+            <div class="card nurse-card" onClick={()=> {this.props.handleListingClick(this.props.details)}}>
+                <div class="card-content nurse-listing">
                     <div class="media">
                         <div class="media-left">
                             <figure class="image is-48x48">
@@ -18,9 +19,9 @@ class Nurse extends React.Component {
                         </div>
                     </div>
                         <div class="media-content">
-                            <p class="title is-3">{name}, RN</p>
-                            <p class="subtitle is-4">{specialty} | {hospital}</p>
-                            <p class="subtitle is-6">{description}</p>
+                            <p class="title is-4">{name}, RN</p>
+                            <p class="subtitle is-5">{specialty} | {hospital}</p>
+                            <p class="subtitle is-7">{description}</p>
                         </div>
                     </div>
             </div>

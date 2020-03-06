@@ -7,7 +7,8 @@ class Signup extends React.Component {
         super(props)
         this.state = {
             ethnicity: "ChooseOption",
-            sex: "ChooseSex"
+            sex: "ChooseSex",
+            submitted: false
         }
     }
 
@@ -29,16 +30,24 @@ class Signup extends React.Component {
         e.preventDefault();
         Axios.post('/patientInfo', this.state)
             .then(response => {
-                console.log('SUBMIT SUCCESS:', response);
                 this.props.savePatientId(response.data);
+                this.setState({submitted: true});
             })
             .catch(error => {
                 console.log('Error saving info:', error);
             })
     }
 
+    renderSubmitButton = () => {
+        // conditionally render the submit button
+        if (Object.keys(this.state).length >= 13) {
+            return <button class="button is-link is-outlined" onClick={this.handleFormSubmit}>{this.state.submitted ? "Saved!" : "Submit Info"}</button>
+        } else {
+            return <button class="button is-danger is-outlined" onClick={this.handleFormSubmit} disabled>Submit Info</button>
+        }
+    }
+
     render() {
-        console.log('WHAT IS THE STATE:', this.state);
         return (
             <div>
                 <div className="info-section">
@@ -120,14 +129,14 @@ class Signup extends React.Component {
                             </div>
                             <div className="info-submit">
                                 <h2 className="form-warning">All Forms Required. Click submit when complete.</h2>
-                                <button class="button is-primary is-outlined" onClick={this.handleFormSubmit}>Submit Info</button>
+                                {this.renderSubmitButton()}
                             </div>
                     </div>
                 </form>
                 <div className="signup-buttons">
                 
                     <Link to='/signup/history'>
-                        <button class="button is-primary is-outlined">Medical History</button>
+                        <button class="button is-primary ">Medical History</button>
                     </Link>
                 </div>
             </div>
