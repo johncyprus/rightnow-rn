@@ -11,5 +11,4 @@ RUN npm install nodemon --global
 
 COPY . /usr/src/app
 
-CMD ["npm", "start", "&", "npm", "run", "server"]
-
+CMD ["npm", "start"] 
